@@ -83,9 +83,9 @@ def get_summarization(original_text, title, summary_ratio=summary_ratio):
         return None
 
     ranking_sentences_id, sentences = sentences_ranking(original_text, title)
-    if len(sentences) <= summary_ratio:
-        return ''.join(sentences)
-    candidate_sentences = [s[0] for s in ranking_sentences_id[:len(sentences) // summary_ratio]]
+    # if len(sentences) <= summary_ratio:
+    #     return ''.join(sentences)
+    candidate_sentences = [s[0] for s in ranking_sentences_id[:len(sentences) // summary_ratio + 1]]
     candidate_sentences = sorted(candidate_sentences)
     return ''.join([sentences[id] for id in candidate_sentences])
 
