@@ -58,6 +58,9 @@ def get_sentence_cos(original_text, title):
 
     # 求句子向量与文章向量的cosine
     sentences_cos = {}
+    if title:
+        sentences_vec = sentences_vec[1:]
+
     for i, sentence_vec in enumerate(sentences_vec):
         sentences_cos[i] = cosine(sentence_vec, text_vec)
     return sentences, sentences_cos
@@ -65,7 +68,7 @@ def get_sentence_cos(original_text, title):
 
 def sentences_ranking(original_text, title):
     sentences, sentences_cos = get_sentence_cos(original_text, title)
-    # sentences_cos[0] /= 2
+    sentences_cos[0] /= 2
     ranking_sentences_id = sorted(sentences_cos.items(), key=lambda x: x[1])
 
     return ranking_sentences_id, sentences
