@@ -1,5 +1,4 @@
 import re
-
 import jieba
 from gensim.models.word2vec import Word2Vec
 
@@ -17,9 +16,12 @@ def get_stop_words(stopwords_path):
         stop_words.append(line.replace('\n', ''))
     return stop_words
 
+
 def cut(string): return ' '.join(jieba.cut(string))
 
+
 def token(string): return re.findall(r'[\d|\w]+', string)
+
 
 # 切句子
 def split_sentence(original_text):
