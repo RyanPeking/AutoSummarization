@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 from bottle import *
 import json, pickle
-from collections import defaultdict
 from TextRank import  get_summarization_by_textrank
 from Naive_Sent_Vec import  get_summarization_by_naive_sentvec
 from Word2Vec_WR import get_summarization_by_w2v_wr
-from LDA import get_summarization_by_lda
 
 # 跨域
 @route('/<:re:.*>', method='OPTIONS')
@@ -44,13 +42,7 @@ def summary():
       res = get_summarization_by_w2v_wr(text, title)
     except NameError:
       res = '请输入正确的带有标点符号的长新闻文本！'
-  elif type == 'lda':
-    try:
-      res = get_summarization_by_lda(text, title)
-    except NameError:
-      res = '请输入正确的带有标点符号的长新闻文本！'
   if res is None:
-    res = ''
     res = '请输入正确的带有标点符号的长新闻文本！'
   response.headers['Content-type'] = 'application/json'
   return res
