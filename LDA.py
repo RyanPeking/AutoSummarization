@@ -35,6 +35,8 @@ def get_cos_with_content(sentence, content_ndarray, stop_words, dictionary, lda 
 def get_sentence_cos(original_text, title):
     stop_words, dictionary, lda = get_model()
     sentences = split_sentence(original_text)
+    if sentences == []:
+        raise NameError
     sentences_cos = {}
 
     if title:
