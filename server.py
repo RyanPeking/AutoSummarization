@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 from bottle import *
 import json, pickle
-from TextRank import  get_summarization_by_textrank
-from Naive_Sent_Vec import  get_summarization_by_naive_sentvec
+from TextRank import get_summarization_by_textrank
+from Naive_Sent_Vec import get_summarization_by_naive_sentvec
 from Word2Vec_WR import get_summarization_by_w2v_wr
+import os
+import logging
+
+logging.basicConfig(level=logging.WARNING,
+                    filename=os.path.join(os.path.abspath('./'), 'log', 'log.txt'),
+                    filemode='w',
+                    format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
 
 # 跨域
 @route('/<:re:.*>', method='OPTIONS')

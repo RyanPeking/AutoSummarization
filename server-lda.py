@@ -2,6 +2,13 @@
 from bottle import *
 import json, pickle
 from LDA import get_summarization_by_lda
+import logging
+
+logging.basicConfig(level=logging.WARNING,
+                    filename=os.path.join(os.path.abspath('./'), 'log', 'log.txt'),
+                    filemode='w',
+                    format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
+
 
 # 跨域
 @route('/<:re:.*>', method='OPTIONS')
